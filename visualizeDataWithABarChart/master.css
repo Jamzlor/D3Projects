@@ -8,7 +8,7 @@ svg{
     display: block;
     margin: auto;
     margin-bottom: 100px;
-    background-color: #5f6c7b;
+    padding: 10px 10px 0 0 ;
 }
 p{
     margin: 0;
@@ -28,21 +28,17 @@ footer{
 .buttonText{
     color: #fffffe;
 }
-.bar{
-    display:inline-block;
-    width: 1px;
-    margin: 1px;
-    background-color: #094067;
-}
+
 /* id */
 #wrapper{
-    width: 60%;
+    width: 80%;
     margin: auto;
+    text-align: center;
 }
 #title{
     font-size: 3rem;
     padding: 10px;
-    margin: 40px 0;
+    margin: 40px 20px 0;
     width: 300px;
     height: 100px;
     border-radius: 3px;
