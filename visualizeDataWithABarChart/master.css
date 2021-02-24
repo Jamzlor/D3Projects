@@ -3,31 +3,17 @@ body{
     margin: 0;
     padding: 0;
     background-color: #fffffe;
+    font-family: monospace;
 }
-svg{
-    display: block;
-    margin: auto;
-    margin-bottom: 100px;
-    padding: 10px 10px 0 0 ;
-}
+
 p{
     margin: 0;
 }
 footer{
     text-align: center;
+    margin-bottom: 50px;
 }
 /* classes */
-.headline{
-    color: #094067;
-}
-
-.pragraph{
-    color: #5f6c7b;
-}
-
-.buttonText{
-    color: #fffffe;
-}
 
 /* id */
 #wrapper{
@@ -36,7 +22,7 @@ footer{
     text-align: center;
 }
 #title{
-    font-size: 3rem;
+    font-size: 32px;
     padding: 10px;
     margin: 40px 20px 0;
     width: 300px;
@@ -44,5 +30,3 @@ footer{
     border-radius: 3px;
     background-color: #3da9fc; 
 }
-
-
