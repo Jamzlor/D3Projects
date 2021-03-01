@@ -14,7 +14,7 @@ const svg = d3.select('#graph-display')
     svg.append('text')
         .text('Year')
         .attr('x', width/2)
-        .attr('y', height -(margin.bottom /2))
+        .attr('y', height -(margin.bottom /2));
 
 const graph = svg.append('g')
     .attr('width', graphWidth)
@@ -26,7 +26,7 @@ const graph = svg.append('g')
         .attr('x', -200)
         .attr('y', 20)
         .style('font-size', '1rem')
-        .attr('transform', 'rotate(-90)')
+        .attr('transform', 'rotate(-90)');
 
 d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json').then(function(data){
     
@@ -101,7 +101,11 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
 
     const barWidth = graphWidth / dataset.length;
 
-    
+    const tooltip = d3.select('#graph-display')
+        .append('div')
+        .attr('class', 'tooltip')
+        .attr('text-align', 'center');
+
     graph.selectAll('rect')
         .data(scaledScores) //.data() method is the dataset being set into this selection
         .enter() //.enter() method is similar to .map when each of value is .data() is entered
@@ -109,14 +113,27 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         .attr('class', 'bar')
         .attr('data-date', (d, i) => dataset[i][0])
         .attr('data-gdp',(d, i) => scores[i])
+        .attr('index', (d, i) => i)
         .attr('width', barWidth)
         .attr('height', (d) => d) //height is already set because the data in .data() is already scaled 
-        .attr('y', function(d) {
+        .attr('y', function(d, i) {
             return graphHeight - d; //graph height - d helps flips the graph around and make the graph upright
         })
-        .attr('x', function(d,i){
+        .attr('x', function(d, i){
             return i * barWidth; 
         })
         .attr('fill', '#3da9fc')
+        .on('mouseover', function(d, i) {
+            console.log(i)
+            d3.select(this).style('fill', '#d0a305');
+            tooltip.transition(200).style('opacity', 0.9);
+            tooltip
+                .style('left', '40%')
+                .style('top', '500px')  
+        })
+        .on('mouseout', function(d) {
+            d3.select(this).style('fill', '#3da9fc');
+            tooltip.transition(200).style('opacity', 0);
+        });
     
     });
