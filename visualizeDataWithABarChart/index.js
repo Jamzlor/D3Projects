@@ -91,17 +91,15 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     // before creating bars for the graph, scale all the data first
     var scaledScores = [];
 
-    var scoresMax = d3.max(scores);
-
     var linearScale = d3.scaleLinear()
-        .domain([0, scoresMax])
+        .domain([0, d3.max(scores)])
         .range([0, graphHeight]);
     
-    scaledScores = scores.map(x => linearScale(x));
+    scaledScores = scores.map(x => linearScale(x)); // this maps the scores through linearScale() method so the 
 
     const barWidth = graphWidth / dataset.length;
 
-    const tooltip = d3.select('#graph-display')
+    const tooltip = d3.select('#graph-display') //this adds a div to the graph display
         .append('div')
         .attr('class', 'tooltip')
         .attr('text-align', 'center');
@@ -124,12 +122,14 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         })
         .attr('fill', '#3da9fc')
         .on('mouseover', function(d, i) {
-            console.log(i)
             d3.select(this).style('fill', '#d0a305');
             tooltip.transition(200).style('opacity', 0.9);
             tooltip
-                .style('left', '40%')
+                .style('left', '30%')
                 .style('top', '500px')  
+                .html(
+                    quarters[i] + '<br>' + '$' + scores[i] + ' Billion'
+                )
         })
         .on('mouseout', function(d) {
             d3.select(this).style('fill', '#3da9fc');
