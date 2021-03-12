@@ -91,15 +91,17 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     // before creating bars for the graph, scale all the data first
     var scaledScores = [];
 
+    var scoresMax = d3.max(scores);
+
     var linearScale = d3.scaleLinear()
-        .domain([0, d3.max(scores)])
+        .domain([0, scoresMax])
         .range([0, graphHeight]);
     
-    scaledScores = scores.map(x => linearScale(x)); // this maps the scores through linearScale() method so the 
+    scaledScores = scores.map(x => linearScale(x));
 
     const barWidth = graphWidth / dataset.length;
 
-    const tooltip = d3.select('#graph-display') //this adds a div to the graph display
+    const tooltip = d3.select('body')
         .append('div')
         .attr('class', 'tooltip')
         .attr('text-align', 'center');
@@ -111,7 +113,6 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         .attr('class', 'bar')
         .attr('data-date', (d, i) => dataset[i][0])
         .attr('data-gdp',(d, i) => scores[i])
-        .attr('index', (d, i) => i)
         .attr('width', barWidth)
         .attr('height', (d) => d) //height is already set because the data in .data() is already scaled 
         .attr('y', function(d, i) {
@@ -122,18 +123,15 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         })
         .attr('fill', '#3da9fc')
         .on('mouseover', function(d, i) {
+            console.log(i)
             d3.select(this).style('fill', '#d0a305');
-            tooltip.transition(200).style('opacity', 0.9);
-            tooltip
-                .style('left', '30%')
+            tooltip.style('left', '500px')
                 .style('top', '500px')
-                .html(
-                    quarters[i] + '<br>' + '$' + scores[i] + ' Billion'
-                );
+                .transition(200).style('opacity', 0.9);
         })
         .on('mouseout', function(d) {
             d3.select(this).style('fill', '#3da9fc');
             tooltip.transition(200).style('opacity', 0);
         });
-    
+        
     });
