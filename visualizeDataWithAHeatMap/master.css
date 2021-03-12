@@ -15,5 +15,10 @@ body {
 .text-centered {
     text-align: center;
 }
-
+.tooltip{
+    position: absolute;
+    background-color: #78c4d4;
+    padding: 20px;
+    border-radius: 3px;
+}
 /* id */
