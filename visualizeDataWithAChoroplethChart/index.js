@@ -14,8 +14,6 @@ function ready(error, educationData, countyData) {
     }
 
     // mise en place
-    const graphDisplay = d3.select('#graph-display');
-
     const width = 1200;
     const height = 800;
 

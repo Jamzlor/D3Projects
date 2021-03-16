@@ -1,0 +1,23 @@
+/* element */
+body{
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+/* class */
+.wrapper{
+    width: 80%;
+    margin: auto;
+    padding-top: 40px;
+}
+.centered{
+    text-align: center;
+}
+.tooltip{
+    background-color: #d2f5e3;
+    
+    border-radius: 3px;
+    width: 300px;
+}
+/* id */
